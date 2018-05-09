@@ -33,13 +33,13 @@ Webpack is a build tool just like Gulp/Grunt
 JSX is a shorthand for JavaScript XML
 
 ```javascript
-	render(){
-	    return(        
-	         <div>
-	            <h1> Hello World from Edureka!!</h1>
-	         </div>
-	    );
-	}
+render(){
+    return(        
+         <div>
+            <h1> Hello World from Edureka!!</h1>
+         </div>
+    );
+}
 ```
 
 ## React Without ES6
@@ -286,6 +286,7 @@ const PropsLogger = (WappedComponent) => {
 			return <WrappedComponent />
 		}
 	}
+}
 ```
 
 **Advantages**
@@ -320,7 +321,6 @@ Keys are used for identifying unique Virtual DOM Elements with their correspondi
 ## Router
 ```javascript
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-In the main component (app.js), we can wrap everything inside return method using the router
 <Router>
   <Route exact path="/" component={Home} />
   <Route path="/about" component={About} />
@@ -345,7 +345,7 @@ Getting the parameter value: **this.props.params.paramName**
 
 ## Why is switch keyword used in React Router v4?
 
-Although a <div> is used to encapsulate multiple routes inside the Router. The ‘switch’ keyword is used when you want to display only a single route to be rendered amongst the several defined routes. The <switch> tag when in use matches the typed URL with the defined routes in sequential order. When the first match is found, it renders the specified route. Thereby bypassing the remaining routes.
+Although a *div* is used to encapsulate multiple routes inside the Router. The ‘switch’ keyword is used when you want to display only a single route to be rendered amongst the several defined routes. The *switch* tag when in use matches the typed URL with the defined routes in sequential order. When the first match is found, it renders the specified route. Thereby bypassing the remaining routes.
 ```javascript
 <switch>
    <route exact path=’/’ component={Home}/>
