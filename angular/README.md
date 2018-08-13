@@ -48,6 +48,79 @@ userClicked($event) {
 ```
 
 ### Unrelated components
+#### Using Subject in Service
+
+An observable allows you to subscribe only whereas a subject allows you to both publish and subscribe. So a subject allows your services to be used as both a publisher and a subscriber.
+
+Create the service
+
+```javascript
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+
+@Injectable()
+export class MessageServiceService {
+
+  message: Subject<string> = new Subject<string>();
+
+  constructor() { }
+
+  createMessage(msg) {
+    this.message.next(msg);
+  }
+}
+```
+
+Setting the 'message' from one component
+
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { MessageServiceService } from './message-service.service';
+
+@Component({
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css']
+})
+export class MessageComponent implements OnInit {
+
+  constructor(private messageService: MessageServiceService) { }
+
+  ngOnInit() {
+    setTimeout( () => {
+      this.messageService.createMessage('hello world')
+    }, 5000);
+  }
+
+}
+```
+
+Subscribing and getting the 'message' value in other component
+
+```javascript
+import { Component, OnInit } from '@angular/core';
+import { MessageServiceService } from './message/message-service.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  title = 'app';
+  message: string = '';
+
+  constructor(private messageService: MessageServiceService) {
+
+  }
+
+  ngOnInit() {
+    this.messageService.message.subscribe( (message) => {
+      this.message = message;
+    });
+  }
+}
+```
 
 ## Making HTTP calls
 app.module.ts
@@ -335,3 +408,116 @@ In the template
     </div>
 </div>
 ```
+### Working with multiple checkboxes
+Define the checkbox values
+
+```javascript
+public signupForm: FormGroup;
+alerts = ['News', 'Movies', 'Sports'];
+```
+
+Define the form elements
+```javascript
+this.signupForm = this.fb.group({
+  emailAlerts: this.fb.array([])
+});
+```
+
+Loop through the checkbox values and render in html
+```html
+<span *ngFor="let alert of alerts; let i=index"> 
+  <input type="checkbox" (change)="onChangeAlerts(alert, $event.target.checked)">{{alert}}
+</span>
+```
+Create the change event function in component
+```javascript
+onChangeAlerts(alert: string, isChecked: boolean) {
+  const formArr = <FormArray>this.signupForm.controls.emailAlerts;
+
+  if (isChecked) {
+    formArr.push(new FormControl(alert));
+  } else {
+    let index = formArr.controls.findIndex(x => x.value == alert)
+    formArr.removeAt(index);
+  }
+}
+```
+
+## Animations
+First step is to uncomment the "web-animations" polyfill in "polyfills.ts" file
+
+```javascript
+import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+```
+As the instruction says, next we have to execute the command `npm install --save web-animations-js`
+
+Once the npm package is installed add the "BrowserAnimationsModule" in the "app.module.ts"
+
+```javascript
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+```
+and then import it to the "imports" array
+
+```javascript
+imports: [
+  BrowserModule,
+  ReactiveFormsModule,
+  BrowserAnimationsModule
+],
+```
+
+Once this is done, open the component file and import the following:
+
+```javascript
+import { trigger, animate, style, transition } from '@angular/animations';
+```
+
+In the component decorator add the "animations" property like following to have a simple fadein/fadeout animation:
+
+```javascript
+@Component({
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition('void => *', [
+        style({opacity: 0}),
+        animate('5000ms ease-in-out', style({opacity: 1}))
+      ]),
+      transition('* => void', [
+        style({opacity: 1}),
+        animate('5000ms ease-in-out', style({opacity: 0}))
+      ])
+    ]),
+  ]
+})
+```
+For triggering the animation we have to use the animation trigger in the html template
+
+```html
+<div [@fadeIn]>
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam, laudantium soluta quaerat nihil, totam voluptatum ad deleniti dolore voluptatem minus ducimus temporibus quod cupiditate ex tenetur cumque dolorem alias. Ex?
+</div>
+```
+
+When the page will be loaded, you will notice a simple fadein animation for the above div.
+
+## Deploying app
+
+We can do a production build using:
+
+```javascript
+ng build --prod
+```
+
+This builds your application and outputs it to your outDir defined in .angular-cli.json. By default this will be "/dist". You can take the contents of this folder and drop it into the root of your Web server and everything will work just fine.
+
+However if we want to deploy to a sub-folder in our web server, we have to add "--base-href" flag
+
+```javascript
+ng build --base-href "/sub-folder/" --prod
+```
+
+After deployment, we can access the url as "http://domain/sub-folder"
+
