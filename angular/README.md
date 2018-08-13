@@ -444,6 +444,8 @@ onChangeAlerts(alert: string, isChecked: boolean) {
 ```
 
 ## Animations
+
+### Simple Animation
 First step is to uncomment the "web-animations" polyfill in "polyfills.ts" file
 
 ```javascript
@@ -502,6 +504,48 @@ For triggering the animation we have to use the animation trigger in the html te
 ```
 
 When the page will be loaded, you will notice a simple fadein animation for the above div.
+
+
+### Stagger animation
+In the component file add the following imports
+
+```javascript
+import { trigger, animate, style, transition, query, keyframes, stagger } from '@angular/animations';
+```
+
+In the component decorator add the following:
+
+```javascript
+@Component({
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css'],
+  animations: [
+
+    trigger('todos', [
+      transition('* => *', [
+        query(':enter', style({ opacity: 0 }), {optional: true}),
+        query(':enter', stagger('300ms', [
+          animate('.6s ease-in', keyframes([
+            style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+          ]))]), {optional: true})
+      ])
+    ])
+  ]
+})
+```
+
+In the html add the animation trigger to the container containing the list items
+
+```html
+<div [@todos]="todos.length">
+  <div *ngFor="let todo of todos" class="todoblock">
+    {{todo}}
+  </div>
+</div>
+```
 
 ## Deploying app
 
