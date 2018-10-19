@@ -634,3 +634,43 @@ var obj = {
 
 console.log(obj.add()) // 30
 ```
+
+## Mutable vs Immutable
+
+Mutable object - The object is subject to be changed/altered.
+Immutable object - The object cannot be changed once created.
+
+Here is an example of mutating your original object in JavaScript,
+```javascript
+  function mutation(originalArray) {
+    // directly mutating/modifying the original array
+    originalArray[0] = "new value";
+    return originalArray;
+  }
+
+  var array = ["some value", "another value"];
+  alert("Return from mutation " + mutation(array));
+  alert("Array: " + array + " (original array has been altered).");
+  ```
+  
+  In this example, the original array got changed in the function (the object has been mutated).
+
+Here is an example of immutable-object-style coding in JavaScript,
+```javascript
+  function immutable(originalArray) {
+    // Instead of mutating/modifying the original array,
+    // we first make a copy of the original array
+    // In this way, the original array stay unchanged.
+    var newArray = [...originalArray];
+    newArray[0] = "new value";
+    return newArray;
+  }
+
+  var array = ["some value", "another value"];
+  alert("Return from immutable " + immutable(array));
+  alert("Array: " + array + " (original array stay unchanged).");
+  ```
+  
+In this example, the original array stay unchanged even though it was used in the function (a new copied/created array has been return with the new changes).
+
+Both approach might be perfectly fine for small simple program. However, as your application scales/grows, you might prefer one way or the other.
