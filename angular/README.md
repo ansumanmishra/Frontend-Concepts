@@ -565,3 +565,71 @@ ng build --base-href "/sub-folder/" --prod
 
 After deployment, we can access the url as "http://domain/sub-folder"
 
+## Template reference variable
+
+A temlate reference variable is oftn a reference to a DOM element within a template. It can also be referenced in an Angular component
+
+### Creating template reference variables
+
+```html
+<input type="text" #firstNameInput>
+<input type="text" #lastNameInput>
+
+```
+Can be accessed the the variables anywhere inside the template
+```html
+<button (click)="show(lastNameInput)">Show</button>
+```
+
+```javascript
+show(lastName: HTMLInputElement){
+    console.log(lastName.value);
+}
+```
+
+This can also be used in component using ViewChild decorator
+
+```javascript
+import {ViewChild, ElementRef} from '@angular/core';
+// Reference firstNameInput variable inside Component
+@ViewChild('firstNameInput') nameInputRef: ElementRef;
+```
+After that, you can use this.nameInputRef anywhere inside your Component.
+
+```javascript
+show(lastName: HTMLInputElement){
+  this.fullName = this.nameInputRef.nativeElement.value + ' ' + lastName.value;
+}
+```
+
+### Using template reference variables in components
+
+Example:
+``` javascript
+@Component({
+  selector: 'app-hello',
+  template: `
+    <div>
+      <h2>Hello {{name}}</h2>
+    </div>
+  `
+})
+export class HelloComponent {
+
+   name = 'Angular';
+}
+```
+We can now get a reference to that component as follows, using the “hashtag syntax”:
+
+```html
+<app-hello #helloComp></app-hello>
+```
+And the best part of it is that we’re getting a reference to the actual component instance, HelloWorldComponent, so we can access any methods or properties of that component (even if they are declared as private or protected, which is surprising):
+
+```html
+<app-hello #helloComp></app-hello>
+<!-- The following expression displays "Angular" -->
+{{helloComp.name}}
+```
+
+We can obviously use that syntax not only to read data from a component, but also to change it.
