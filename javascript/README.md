@@ -1,4 +1,4 @@
-# Javascript Interview Questions & Answers
+# Javascript Concepts
 
 ## Scope
 Local scope - a variable can be accessed in a particular place
