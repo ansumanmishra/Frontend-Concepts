@@ -674,3 +674,100 @@ Here is an example of immutable-object-style coding in JavaScript,
 In this example, the original array stay unchanged even though it was used in the function (a new copied/created array has been return with the new changes).
 
 Both approach might be perfectly fine for small simple program. However, as your application scales/grows, you might prefer one way or the other.
+
+## More on Mutable vs Immutable
+A mutable object is an object whose state can be modified after it is created. An immutable object is an object whose state cannot be modified after it is created
+
+Mutable - Strings and Numbers
+Immutable - Objects and Arrays
+
+Examples:
+
+``` javascript
+let a = {
+    foo: 'bar'
+};
+
+let b = a;
+
+a.foo = 'test';
+
+console.log(b.foo); // test
+console.log(a === b) // true
+```
+
+``` javascript
+let a = 'test';
+let b = a;
+a = a.substring(2);
+
+console.log(a) //st
+console.log(b) //test
+console.log(a === b) //false
+```
+
+``` javascript
+let a = ['foo', 'bar'];
+let b = a;
+
+a.push('baz')
+
+console.log(b); // ['foo', 'bar', 'baz']
+console.log(a === b) // true
+```
+
+``` javascript
+let a = 1;
+let b = a;
+a++;
+
+console.log(a) //2
+console.log(b) //1
+console.log(a === b) //false
+```
+
+What we see is that for mutable values, updating state applies across all references to that variable. So changing a value in one place, changes it for all references to that object. For the immutable data types, we have no way of changing the internal state of the data, so the reference always gets reassigned to a new object.
+
+Creating immutable objects
+### Object.freeze()
+
+The Object.freeze() method freezes an object. A frozen object can no longer be changed; freezing an object prevents new properties from being added to it, existing properties from being removed, prevents changing the enumerability, configurability, or writability of existing properties, and prevents the values of existing properties from being changed. In addition, freezing an object also prevents its prototype from being changed. freeze() returns the same object that was passed in.
+
+``` javascript
+const object1 = {
+  property1: 42
+};
+
+const object2 = Object.freeze(object1);
+
+object2.property1 = 33;
+// Throws an error in strict mode
+
+console.log(object2.property1);
+// expected output: 42
+```
+### To enforce object immutability while update the object make sure to use Object.assign() rather than object.prop='something'
+
+``` javascript
+let a = {
+	name: 'Ansuman'
+};
+
+var b = Object.assign({},a);
+
+b.name = 'mishra';
+
+console.log(a); // Ansuman
+console.log(b); // mishra
+```
+
+### we can use spread(...) operator.
+
+``` javascript
+var person={name:'Ansuman',age:26}
+var newPerson={...person,name:'Mishra'}
+
+console.log(newPerson ===person) //false
+console.log(person)  //{name:'Ansuman',age:26}
+console.log(newPerson)  //{name:'Mishra',age:26}
+```
