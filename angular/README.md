@@ -1,4 +1,4 @@
-# Angular Interview Questions & Answers
+# Angular Concepts
 
 ## Interacting with components
 
@@ -633,3 +633,12 @@ And the best part of it is that we’re getting a reference to the actual compon
 ```
 
 We can obviously use that syntax not only to read data from a component, but also to change it.
+
+## Difference Between Constructor and ngOnInit
+The Constructor is executed when the class is instantiated. It has nothing do with the angular. It is the feature of Javascript and Angular does not have the control over it
+
+The ngOnInit is Angular specific and is called when the Angular has initialized the component with all its input properties
+
+The @Input properties are available under the ngOnInit lifecycle hook. This will help you to do some initialization stuff like getting data from the back-end server etc to display in the view
+
+@Input properties are shows up as undefined inside the constructor
