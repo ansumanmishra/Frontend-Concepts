@@ -771,3 +771,31 @@ console.log(newPerson ===person) //false
 console.log(person)  //{name:'Ansuman',age:26}
 console.log(newPerson)  //{name:'Mishra',age:26}
 ```
+### More examples
+#### Object Mutable
+```javascript
+const user = {
+name: 'abc',
+age: 24
+}
+
+const newuser = user;
+
+newuser.name = 'xyz';
+
+console.log(newuser);
+console.log(user);
+```
+
+#### Object immutable using spread operator
+```javascript
+const user = {
+name: 'abc',
+age: 24
+}
+
+const newUser = {...user, name: 'xyz'};
+
+console.log(newUser);
+console.log(user); 
+```
