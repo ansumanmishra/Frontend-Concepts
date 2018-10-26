@@ -1,4 +1,4 @@
-# Polymer JS Interview Questions & Answers
+# Polymer JS Concepts
 
 ## Pros over angular
 - Polymer is better for creating progressive webapps
