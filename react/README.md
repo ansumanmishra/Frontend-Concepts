@@ -1,4 +1,4 @@
-# React JS Interview Questions & Answers
+# React JS Concepts
 
 ## What is react js
 
