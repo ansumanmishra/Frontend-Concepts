@@ -1,5 +1,11 @@
 # Angular Concepts
 
+## Angular Decorators
+* Class decorators, e.g. @Component and @NgModule
+* Property decorators for properties inside classes, e.g. @Input and @Output
+* Method decorators for methods inside classes, e.g. @HostListener
+* Parameter decorators for parameters inside class constructors, e.g. @Inject
+
 ## Interacting with components
 
 ### Parent to Child
