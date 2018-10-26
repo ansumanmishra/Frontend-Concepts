@@ -1,6 +1,6 @@
 # Frontend Concepts on
-  ` Angular
-  ` React
-  ` Polymer
-  ` HTML
-  ` CSS
+  * Angular
+  * React
+  * Polymer
+  * HTML
+  * CSS
