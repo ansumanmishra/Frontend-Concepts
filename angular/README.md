@@ -642,3 +642,31 @@ The ngOnInit is Angular specific and is called when the Angular has initialized 
 The @Input properties are available under the ngOnInit lifecycle hook. This will help you to do some initialization stuff like getting data from the back-end server etc to display in the view
 
 @Input properties are shows up as undefined inside the constructor
+
+## Naming Conventions
+### Naming conventions for observables
+Because Angular applications are mostly written in TypeScript, you will typically know when a variable is an observable. Although the Angular framework does not enforce a naming convention for observables, you will often see observables named with a trailing “$” sign.
+
+This can be useful when scanning through code and looking for observable values. Also, if you want a property to store the most recent value from an observable, it can be convenient to simply use the same name with or without the “$”.
+
+#### Naming Observables Angular
+```javascript
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+ 
+@Component({
+  selector: 'app-stopwatch',
+  templateUrl: './stopwatch.component.html'
+})
+export class StopwatchComponent {
+ 
+  stopwatchValue: number;
+  stopwatchValue$: Observable<number>;
+ 
+  start() {
+    this.stopwatchValue$.subscribe(num =>
+      this.stopwatchValue = num
+    );
+  }
+}
+```
