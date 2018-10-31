@@ -569,6 +569,25 @@ console.log(gen.next().value); // 2
 ## ES8
 
 ### Object.values(), Object.entries
+
+### Object.entries
+Object.entries() returns a list of key, value pairs which we can loop through.
+
+Example:
+```javascript
+let obj = {
+  key1: "value1",
+  key2: "value2",
+  key3: "value3"
+}
+
+Object.entries(obj).forEach(entry => {
+  let key = entry[0];
+  let value = entry[1];
+  //use key and value here
+});
+```
+
 ### String padding
 ```javascript
 string.padStart(10, ' ')
