@@ -587,6 +587,58 @@ Object.entries(obj).forEach(entry => {
   //use key and value here
 });
 ```
+`Note:`
+We can also use the following to iterate over an object:
+
+*Object.keys* - returns an array of object keys
+```javascript
+
+let obj = {
+  key1: "value1",
+  key2: "value2",
+  key3: "value3"
+}
+
+Object.keys(obj).forEach(key => {
+  let value = obj[key];
+  //use key and value here
+});
+```
+*Object.values* - returns an array of object property values
+```javascript
+
+let obj = {
+  key1: "value1",
+  key2: "value2",
+  key3: "value3"
+}
+
+Object.values(obj).forEach(value => {
+  //use value here
+});
+```
+
+*for…in loop* - can be used to iterate over enumerable properties of JavaScript objects
+
+```javascript
+
+let obj = {
+  key1: "value1",
+  key2: "value2",
+  key3: "value3"
+}
+
+for (const key in obj) {
+  let value = obj[key];
+  
+  //optional check for properties from prototype chain
+  if (obj.hasOwnProperty(key)) {
+    //no a property from prototype chain     
+  }else{
+    //property from protytpe chain
+  }
+}
+```
 
 ### String padding
 ```javascript
