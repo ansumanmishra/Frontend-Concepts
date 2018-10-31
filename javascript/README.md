@@ -749,7 +749,7 @@ Both approach might be perfectly fine for small simple program. However, as your
 ## More on Mutable vs Immutable
 A mutable object is an object whose state can be modified after it is created. An immutable object is an object whose state cannot be modified after it is created
 
-Mutable - Strings and Numbers
+Mutable - Strings and Numbers (These are primitive types)
 Immutable - Objects and Arrays
 
 Examples:
