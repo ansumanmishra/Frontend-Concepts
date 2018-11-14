@@ -858,7 +858,7 @@ console.log(newuser);
 console.log(user);
 ```
 
-#### Object immutable using spread operator
+### Object immutable using spread operator
 ```javascript
 const user = {
 name: 'abc',
@@ -871,6 +871,14 @@ console.log(newUser);
 console.log(user); 
 ```
 
-#### Using JSON.parse JSON.stringify
+### Using JSON.parse JSON.stringify
 We can create a deep copy of the object without the reference like below:
+```javascript
 let newObject = JSON.parse(JSON.stringify(curObject));
+```
+### Using Object.assign()
+This creates a deep copy of the object. For modifying any property in an object in an immutable way:
+```javascript
+const currentObject = Object.assign({}, currentObject, {key: value});
+```
+
