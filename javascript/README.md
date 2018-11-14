@@ -870,3 +870,7 @@ const newUser = {...user, name: 'xyz'};
 console.log(newUser);
 console.log(user); 
 ```
+
+#### Using JSON.parse JSON.stringify
+We can create a deep copy of the object without the reference like below:
+let newObject = JSON.parse(JSON.stringify(curObject));
