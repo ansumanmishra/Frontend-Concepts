@@ -842,6 +842,28 @@ console.log(newPerson ===person) //false
 console.log(person)  //{name:'Ansuman',age:26}
 console.log(newPerson)  //{name:'Mishra',age:26}
 ```
+
+For updating multiple properties:
+```javascript
+var myObject = {
+    label: 'foo',
+    name: 'bar',
+    id: 12
+};
+
+myObject = {...myObject, label: 'baz', name: 'qux'};
+console.log(myObject);
+
+// Or, if your update is contained in its own object:
+
+var myUpdate = {
+    label: 'something',
+    name: 'else'
+}
+
+myObject = {...myObject, ...myUpdate}
+console.log(myObject)
+```
 ### More examples
 #### Object Mutable
 ```javascript
@@ -880,5 +902,14 @@ let newObject = JSON.parse(JSON.stringify(curObject));
 This creates a deep copy of the object. For modifying any property in an object in an immutable way:
 ```javascript
 const currentObject = Object.assign({}, currentObject, {key: value});
+```
+For multiple properties update:
+```javascript
+var myObject = {
+    label: 'foo',
+    name: 'bar',
+    id: 12
+}
+Object.assign(myObject, {label: 'Test', name: 'Barbar'})
 ```
 
