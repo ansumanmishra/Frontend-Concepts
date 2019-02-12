@@ -912,4 +912,16 @@ var myObject = {
 }
 Object.assign(myObject, {label: 'Test', name: 'Barbar'})
 ```
+### For Nested Objects in an Array
+
+Option 1:
+```javascript
+const tableRows = this.table.activePlmTableRows;
+this.table.activePlmTableRows = tableRows.map(x => Object.assign({}, x));
+```
+
+Option2:
+```javascript
+this.table.activePlmTableRows = JSON.parse(JSON.stringify(tableRows));
+```
 
