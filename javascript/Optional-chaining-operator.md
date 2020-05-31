@@ -82,8 +82,8 @@ console.log(user?.address?.[0].city); // Bern
 
 ## Nullish coalescing operator
 Difference between ?? and ||
-**. || returns the first truthy value
-**. ?? returns the first defined value
+* || returns the first truthy value
+* ?? returns the first defined value
 
 ### They only differ for the following cases: 
 ```javascript
