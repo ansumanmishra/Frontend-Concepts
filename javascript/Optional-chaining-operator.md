@@ -64,7 +64,7 @@ const user = {
 
 };
 console.log(user?.address.getAddress?.()); // undefined
-
+```
 ### Array example
 It even works well with arrays
 ```javascript
