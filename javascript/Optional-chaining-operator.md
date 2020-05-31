@@ -79,3 +79,33 @@ const user = {
 };
 console.log(user?.address?.[0].city); // Bern
 ```
+
+## Nullish coalescing operator
+Difference between ?? and ||
+** || returns the first truthy value
+** ?? returns the first defined value
+
+### They only differ for the following cases: 
+```javascript
+false || 'Ansuman'; // "Ansuman"
+false ?? 'Ansuman'; // false
+
+0 || 'Ansuman' // "Ansuman"
+0 ?? 'Ansuman' // 0
+
+'' || 'Ansuman' // "Ansuman"
+'' ?? 'Ansuman' // ""
+
+NaN || 'Ansuman' // "Ansuman"
+NaN && 'Ansuman' // NaN
+```
+
+## Combining Nullish coalescing operator with optional chaining operator
+```javascript
+let customer = {
+  name: "Carl",
+  details: { age: 82 }
+};
+const customerCity = customer?.city ?? "Unknown city";
+console.log(customerCity); // Unknown city
+```
