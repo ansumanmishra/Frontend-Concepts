@@ -65,3 +65,8 @@ source.pipe(
 // Request 1
 ```
 Example use case: Preventing repeated form submissions by ignoring multiple clicks on a submit button until the initial request completes.
+
+# Operators
+## zip
+## iif
+## finalize
