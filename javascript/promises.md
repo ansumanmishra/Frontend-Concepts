@@ -27,6 +27,8 @@ getData('error')
   });
 ```
 
+Example - https://stackblitz.com/edit/js-s4y3vj?file=index.js
+
 Advantages of promises over callback functions:
 - Chaining: Promises can be chained using .then() and .catch(), which allows for a more readable and maintainable code structure when handling multiple dependent asynchronous operations.
 
