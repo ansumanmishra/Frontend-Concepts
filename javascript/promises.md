@@ -1,4 +1,6 @@
 # Promises
+
+## Basic concept
 Promises provide a more structured and standardized approach to handling asynchronous operations, avoiding some of the issues associated with callback functions.
 
 ```javascript
@@ -29,3 +31,11 @@ Advantages of promises over callback functions:
 - Chaining: Promises can be chained using .then() and .catch(), which allows for a more readable and maintainable code structure when handling multiple dependent asynchronous operations.
 
 - Error Handling: Promises have a standardized way of handling errors with the .catch() method, which leads to more consistent error handling.
+
+## Promise.all()
+
+## Promise.race()
+
+## Promise.allSettled()
+
+## Promise.any()
